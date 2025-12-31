@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lesson-2</title>
+</head>
+<body>
+     <div class="js-container"></div>
+     <div class="js-container-2"></div>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+     
+     function Input({type,placeholder}){
+        return (
+           <div>
+            <input type={type} placeholder={placeholder}/>
+            </div>
+        );
+     }
+     function LoginForm(){
+        return (
+         <>
+        <p>Hello,welcome to my website inside.</p>
+         <Input type="text" placeholder="Email"/>
+         <Input type = "password" placeholder="Password"></Input>
+        <button>Login</button>
+        <button>Signup</button>
+        </>
+        );
+     }
+     function App(){
+       return (
+         <LoginForm />
+       );
+     }
+
+     const container = document.querySelector('.js-container');
+     ReactDOM.createRoot(container).render(<App/>);
+
+
+
+
+    function ProductDetails({product,price,discount,image}){
+        return (
+         <div>
+         <img src={image} alt="" width="140px"/>
+         <p>{product}</p>
+          {discount && <del><p>price:${price}</p></del>}
+          {discount !== undefined && <p>Discount price : ${discount}</p>}
+         <button>Add To cart</button>
+         </div>
+        );
+    }
+
+    function EcomApp(){
+        return (
+            <>
+           <ProductDetails product="Socks" price={30} discount="10" image="cotton-socks.png" />
+
+           <ProductDetails product="Tennis balls" price="6" image="tennis-balls.png" />
+           </>
+        );
+    }
+
+    const container2 = document.querySelector('.js-container-2');
+    ReactDOM.createRoot(container2).render(<EcomApp/>);
+
+    </script>
+</body>
+</html>
