@@ -11,18 +11,85 @@
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-        function ChatInput(){
+
+       function ChatInput({chatMessages,setChatMessages}) {
+            const [inputText, setInputText] = React.useState('');
+            const [isLoading,setIsLoading] = React.useState(false);
+
+            function saveInputText(event) {
+                setInputText(event.target.value);
+            }
+
+            async function sendMessage(){
+                //  console.log(inputText);
+                if(inputText === '' || isLoading){
+                    return;
+                }
+                
+                setIsLoading(true);
+                setInputText('');
+                
+                const newChatMessages = [
+                    ...chatMessages,
+                    {
+                        message: inputText,
+                        sender: 'user',
+                        id: crypto.randomUUID()
+                    }
+                ];
+
+                // setChatMessages(newChatMessages);
+
+                setChatMessages([
+                    ...newChatMessages,
+                    {
+                        message: "Loading...",
+                        sender: 'robot',
+                        id: crypto.randomUUID()
+                    }
+                ]);
+
+                const response = await Chatbot.getResponseAsync(inputText);
+
+                 setChatMessages([
+                    ...newChatMessages,
+                    {
+                        message: response,
+                        sender: 'robot',
+                        id: crypto.randomUUID()
+                    }
+                ]);
+                // setInputText('');
+                setIsLoading(false);
+            }
+            
+            function send(event){
+                if(event.key === 'Escape'){
+                    setInputText('');
+                }
+                if(event.key === 'Enter'){
+                    sendMessage();
+                }
+            }
+           
             return (
                 <>
                     <input
                         type="text"
                         placeholder="Send a message to ChatBot"
-                        size="30">
+                        size="30"
+                        onChange={saveInputText}
+                        value ={inputText}
+                        onKeyDown={send}
+                    >
                     </input>
 
-                    <button>
+                    <button onClick={sendMessage}>
                         Send
                     </button>
                 </>
@@ -52,16 +119,74 @@
             )
         }
 
+        function ChatMessages({chatMessages}) {
+            // const [chatMessages,setChatMessages] = arr;
+            // const chatMessages = arr[0];
+            //  const setChatMessages = arr[1];
 
-        function App(){
+            // const chatMess ageComponents = chatMessages.map((chatMessages)=>{
+            //    return (
+            //     <ChatMessage message={chatMessages.message} sender={chatMessages.sender} />
+            //    );
+            // })
+
+            //  function sendMessage(){
+            //       setChatMessages([
+            //         ...chatMessages,
+            //          {
+            //             message:'test',
+            //             sender:'user',
+            //             id:crypto.randomUUID()
+            //          }
+            //       ]);
+
+
+            //    chatMessages.push({
+            //     message:'test',
+            //     sender:'user',
+            //     id:crypto.randomUUID()
+            //    });
+            //    console.log(chatMessages);
+
             return (
-                  <>
-                    <ChatInput />
-                    <ChatMessage message="hello chatBot" sender="user" />
-                    <ChatMessage message="Hello! How can I help you?" sender="robot" />
-                    <ChatMessage message="can you get me todays date?" sender="user" />
-                    <ChatMessage message="Today is December 30" sender="robot" />
-                 </>
+                <>
+                    {
+                        chatMessages.map((chatMessages) =>{
+                        return (
+                            <ChatMessage
+                                message={chatMessages.message}
+                                sender={chatMessages.sender}
+                                key={chatMessages.id} />
+                         )
+                        })
+                    }
+                </>
+            )
+        }
+
+        function App() {
+              const [chatMessages, setChatMessages] = React.useState([{
+                message: "hello chatBot",
+                sender: "user",
+                id: "id1"
+            }, {
+                message: 'Hello! How can I help you?',
+                sender: "robot",
+                id: 'id2'
+            }, {
+                message: 'can you get me todays date?',
+                sender: "user",
+                id: 'id3'
+            }, {
+                message: 'Today is December 30',
+                sender: "robot",
+                id: 'id4'
+            }]);
+            return (
+                <>
+                    <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages}/>
+                    <ChatMessages chatMessages={chatMessages} />
+                </>
             );
         }
 
@@ -78,9 +203,9 @@
 
         const container = document.querySelector('.js-container');
         // ReactDOM.createRoot(container).render(App());
-           ReactDOM.createRoot(container).render(<App/>);
+        ReactDOM.createRoot(container).render(<App />);
 
     </script>
 </body>
 
-</html>
+</html

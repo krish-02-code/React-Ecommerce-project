@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+</head>
+<body>
+    <div class="js-container"></div>
+    <div class="js-container1"></div>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+    
+    
+    function Counter({count,setCount}){
+
+        function clicked(){
+        setCount(count+1);
+        }
+        // const [count,setCount] = React.useState(0);
+        
+        // function clicked(){
+        // setCount(count+1);
+        // }    here both will show different counton the basis of clicked 
+
+        return (
+            <button onClick={clicked}>Clicked {count} {count > 1 ? 'times':'time'}</button>
+            
+        )
+    }
+    
+    function App(){
+        const [count,setCount] = React.useState(0);
+        
+        function Reset(){
+           setCount(0);
+        }
+
+        return (
+            <>
+            <Counter count={count} setCount={setCount}/>
+            <Counter count={count} setCount={setCount}/>
+            <button onClick={Reset}>Reset</button>
+            </>
+        )
+    }
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App/>);
+    
+    // new 
+
+
+     function Hello(){
+         const [inputName,setInputName] = React.useState('');
+          
+         function setName(event){
+            setInputName(event.target.value);
+         }
+         
+        function reset(){
+            setInputName('');
+        }
+        function Example(){
+             setInputName('Krish');
+        }
+        return(
+            <>
+            <br/>
+            <input type="text" name="" id="" onChange={setName} value={inputName}/>
+            <button onClick={reset}>Reset</button>
+            <button onClick={Example}>Example</button>
+            <p>Hello {inputName}</p>
+
+            </>
+        )
+     }
+
+
+    const container1 = document.querySelector('.js-container1');
+    ReactDOM.createRoot(container1).render(<Hello/>);
+    
+
+    </script>
+</body>
+</html>
