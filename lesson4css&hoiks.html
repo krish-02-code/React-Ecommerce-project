@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+.js-button-green{
+    background-color: rgb(25,135,84);
+    padding: 12px;
+    border-radius: none;
+}
+.js-button-red{
+    background-color: red;
+    padding: 12px;
+    border-radius: none;
+}
+
+</style>
+
+</head>
+<body>
+    <div class="js-container">
+
+    </div>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+
+    function App(){
+        const [isButtonOn,setIsButtonOn] = React.useState(true);
+        
+        function switchButton(){
+            if(isButtonOn){
+                setIsButtonOn(false);
+            }else{
+                setIsButtonOn(true);
+             }
+        }
+        return (
+            <button onClick={switchButton} className={isButtonOn ? "js-button-green" : "js-button-red"}>{isButtonOn ? "On" : "Off"}</button>
+        )
+    }
+
+     const container = document.querySelector('.js-container');
+     ReactDOM.createRoot(container).render(<App/>);
+    </script>
+</body>
+</html>

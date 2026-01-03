@@ -28,22 +28,29 @@
 
         return (
             <button onClick={clicked}>Clicked {count} {count > 1 ? 'times':'time'}</button>
-            
         )
     }
     
     function App(){
         const [count,setCount] = React.useState(0);
-        
+        const buttonRef = React.useRef();
+
         function Reset(){
            setCount(0);
         }
-
+        
+        function autoPlay(){
+            const buttonEle = buttonRef.current;
+            setInterval(()=>{
+                
+            },1000)
+        }
         return (
             <>
             <Counter count={count} setCount={setCount}/>
             <Counter count={count} setCount={setCount}/>
             <button onClick={Reset}>Reset</button>
+            <button onClick={autoPlay}>Autoplay</button>
             </>
         )
     }
@@ -60,28 +67,27 @@
             setInputName(event.target.value);
          }
          
-        function reset(){
+         function reset(){
             setInputName('');
-        }
-        function Example(){
+         }
+         
+         function Example(){
              setInputName('Krish');
-        }
-        return(
+         }
+         
+         return(
             <>
             <br/>
             <input type="text" name="" id="" onChange={setName} value={inputName}/>
             <button onClick={reset}>Reset</button>
             <button onClick={Example}>Example</button>
             <p>Hello {inputName}</p>
-
             </>
-        )
+         )
      }
-
 
     const container1 = document.querySelector('.js-container1');
     ReactDOM.createRoot(container1).render(<Hello/>);
-    
 
     </script>
 </body>

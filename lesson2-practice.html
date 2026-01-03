@@ -5,6 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lesson-2</title>
+    <style>
+     
+    .js-header{
+        margin: 0px;
+        margin-bottom: 10px;
+        font-size: larger;
+    }
+    .js-input{
+        width: 250px;
+        padding: 10px 10px;
+        margin-bottom: 5px;
+    }
+    .js-button{
+        margin-bottom: 10px;
+        padding: 6px 10px;
+        margin-right: 10px;
+        border: none;
+        background-color: rgb(101, 101, 254);
+        color: aliceblue;
+    }
+    .js-show{
+        margin-left: 10px;
+        padding: 6px;
+
+    }
+    </style>
 </head>
 
 <body>
@@ -16,22 +42,33 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-        function Input({ type, placeholder }) {
+        function Input({ type, placeholder,setShowPassword,showPassword}) {
+        
+            function togglePassWord(){
+                setShowPassword(!showPassword);
+            }
+
             return (
                 <div>
-                    <input type={type} placeholder={placeholder} />
+                    <input className="js-input" type={type} placeholder={placeholder}>
+                    </input>
+                     <button onClick={togglePassWord} className="js-show">Show</button> : ''
                 </div>
             );
         }
         function LoginForm() {
+            const [showPassword,setShowPassword] = React.useState(false);
+
             return (
-                <>
-                    <p>Hello,welcome to my website inside.</p>
+                <div>
+                    <p className="js-header">Hello,welcome to my website inside.</p>
                     <Input type="text" placeholder="Email" />
-                    <Input type="password" placeholder="Password"></Input>
-                    <button>Login</button>
-                    <button>Signup</button>
-                </>
+                    <Input showPassword={showPassword} setShowPassword={setShowPassword} type={showPassword ? 'text' : 'password'} placeholder="Password">
+                    </Input>
+                    <button className="js-button">Login</button>
+                    <button className="js-button">Signup</button>
+                  
+                </div>
             );
         }
         function App() {
