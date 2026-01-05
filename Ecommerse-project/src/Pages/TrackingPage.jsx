@@ -1,21 +1,23 @@
-
 import './TrackingPage.css';
 import { Header } from '../Components/Header';
-
+import logoWhite from '../assets/images/logo-white.png';
+import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
+import CartIcon from '../assets/images/icons/cart-icon.png';
+import SearchIcon from '../assets/images/icons/search-icon.png'
 export function TrackingPage() {
     return (
         <>
             <title>Tracking</title>
+            <link rel="icon" type="image/svg+xml" href="tracking-favicon.png" />
+            <Header></Header>
 
-             <Header></Header>
-             
             <div className="header">
                 <div className="left-section">
                     <a href="/" className="header-link">
                         <img className="logo"
-                            src="images/logo-white.png" />
+                            src={logoWhite} />
                         <img className="mobile-logo"
-                            src="images/mobile-logo-white.png" />
+                            src={MobileLogoWhite} />
                     </a>
                 </div>
 
@@ -23,7 +25,7 @@ export function TrackingPage() {
                     <input className="search-bar" type="text" placeholder="Search" />
 
                     <button className="search-button">
-                        <img className="search-icon" src="images/icons/search-icon.png" />
+                        <img className="search-icon" src={SearchIcon} />
                     </button>
                 </div>
 
@@ -34,7 +36,7 @@ export function TrackingPage() {
                     </a>
 
                     <a className="cart-link header-link" href="/checkout">
-                        <img className="cart-icon" src="images/icons/cart-icon.png" />
+                        <img className="cart-icon" src={CartIcon} />
                         <div className="cart-quantity">3</div>
                         <div className="cart-text">Cart</div>
                     </a>
