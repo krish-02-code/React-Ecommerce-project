@@ -2,9 +2,9 @@ import './HomePage.css'
 import { Header } from '../Components/Header';
 import ChechMark from '../assets/images/icons/checkmark.png'
 import axios from 'axios';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export function HomePage() {
+export function HomePage({cart}) {
     // fetch('http://localhost:3000/api/products')
     // .then((response)=>{
     //    return response.json();
@@ -12,26 +12,21 @@ export function HomePage() {
     //     {console.log(data)}
     // );
 
-    const [products,SetProducts] = useState([]);
-    const [cart,setCart] = useState([]);
-
+    const [products, SetProducts] = useState([]);
+    
     useEffect(() => {
         axios.get('/api/products')
             .then((response) => {
                 SetProducts(response.data);
             });
 
-            axios.get('/api/cart-items')
-            .then((response)=>{
-                setCart(response.data);
-            })
-    },[]);
+    }, []);
 
     return (
         <>
             <title>Ecommerce project</title>
             <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
-            <Header cart={cart}/>
+            <Header cart={cart} />
             <div className="home-page">
                 <div className="products-grid">
                     {products.map((product) => {
