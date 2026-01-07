@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import logo from '../../assets/images/logo.png'
 import MobileLogo from '../../assets/images/mobile-logo.png';
 import CheckOutLockIcon from '../../assets/images/icons/checkout-lock-icon.png';
+
 export function CheckoutHeader() {
     return (
         <div className="checkout-header">

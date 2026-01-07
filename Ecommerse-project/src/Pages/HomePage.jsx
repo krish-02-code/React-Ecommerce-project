@@ -3,6 +3,7 @@ import { Header } from '../Components/Header';
 import ChechMark from '../assets/images/icons/checkmark.png'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { formatmoney } from '../utils/money';
 
 export function HomePage({cart}) {
     // fetch('http://localhost:3000/api/products')
@@ -21,7 +22,7 @@ export function HomePage({cart}) {
             });
 
     }, []);
-
+     
     return (
         <>
             <title>Ecommerce project</title>
@@ -36,7 +37,6 @@ export function HomePage({cart}) {
                                     <img className="product-image"
                                         src={product.image} />
                                 </div>
-
                                 <div className="product-name limit-text-to-2-lines">
                                     {product.name}
                                 </div>
@@ -50,7 +50,7 @@ export function HomePage({cart}) {
                                 </div>
 
                                 <div className="product-price">
-                                    ${(product.priceCents / 100).toFixed(2)}
+                                   {formatmoney(product.priceCents)}
                                 </div>
 
                                 <div className="product-quantity-container">
