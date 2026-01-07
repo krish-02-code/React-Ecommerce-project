@@ -4,12 +4,12 @@ import logoWhite from '../assets/images/logo-white.png';
 import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import CartIcon from '../assets/images/icons/cart-icon.png';
 import SearchIcon from '../assets/images/icons/search-icon.png'
-export function TrackingPage() {
+export function TrackingPage({cart}) {
     return (
         <>
             <title>Tracking</title>
             <link rel="icon" type="image/svg+xml" href="tracking-favicon.png" />
-            <Header></Header>
+            <Header cart={cart}/>
 
             <div className="header">
                 <div className="left-section">
