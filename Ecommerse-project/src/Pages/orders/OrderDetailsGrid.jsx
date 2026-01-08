@@ -2,11 +2,13 @@ import dayjs from "dayjs";
 import BuyAgain from '../../assets/images/icons/buy-again.png';
 import { Fragment } from "react";
 export function OrderDetailsGrid({order}) {
-    return (
 
+    return (
+       
         <div className="order-details-grid">
             {order.products.map((orderProduct) => {
                 return (
+                    
                     <Fragment key={orderProduct.product.id}>
                         <div className="product-image-container">
                             <img src={orderProduct.product.image} />
@@ -29,7 +31,7 @@ export function OrderDetailsGrid({order}) {
                         </div>
 
                         <div className="product-actions">
-                            <a href="/tracking">
+                            <a href={`/tracking/${order.id}/${orderProduct.productId}`}>
                                 <button className="track-package-button button-secondary">
                                     Track package
                                 </button>
