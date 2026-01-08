@@ -1,4 +1,4 @@
-import { Header } from "../Components/Header";
+import { Header } from "../../Components/Header";
 import './PageNotFound.css';
 
 export function PageNotFound(){

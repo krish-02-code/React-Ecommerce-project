@@ -1,47 +1,14 @@
 import './TrackingPage.css';
-import { Header } from '../Components/Header';
-import logoWhite from '../assets/images/logo-white.png';
-import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
-import CartIcon from '../assets/images/icons/cart-icon.png';
-import SearchIcon from '../assets/images/icons/search-icon.png'
+import { Header } from '../../Components/Header';
+import MobileLogoWhite from '../../assets/images/mobile-logo-white.png';
+import CartIcon from '../../assets/images/icons/cart-icon.png';
+import SearchIcon from '../../assets/images/icons/search-icon.png'
 export function TrackingPage({cart}) {
     return (
         <>
             <title>Tracking</title>
             <link rel="icon" type="image/svg+xml" href="tracking-favicon.png" />
             <Header cart={cart}/>
-
-            <div className="header">
-                <div className="left-section">
-                    <a href="/" className="header-link">
-                        <img className="logo"
-                            src={logoWhite} />
-                        <img className="mobile-logo"
-                            src={MobileLogoWhite} />
-                    </a>
-                </div>
-
-                <div className="middle-section">
-                    <input className="search-bar" type="text" placeholder="Search" />
-
-                    <button className="search-button">
-                        <img className="search-icon" src={SearchIcon} />
-                    </button>
-                </div>
-
-                <div className="right-section">
-                    <a className="orders-link header-link" href="/orders">
-
-                        <span className="orders-text">Orders</span>
-                    </a>
-
-                    <a className="cart-link header-link" href="/checkout">
-                        <img className="cart-icon" src={CartIcon} />
-                        <div className="cart-quantity">3</div>
-                        <div className="cart-text">Cart</div>
-                    </a>
-                </div>
-            </div>
 
             <div className="tracking-page">
                 <div className="order-tracking">
