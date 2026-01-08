@@ -16,11 +16,11 @@ export function HomePage({ cart }) {
     const [products, SetProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('/api/products')
-            .then((response) => {
-                SetProducts(response.data);
-            });
-
+        const getHomeData = async () => {
+            const response = await axios.get('/api/products')
+            SetProducts(response.data);
+        };
+        getHomeData();
     }, []);
 
     return (
@@ -29,7 +29,7 @@ export function HomePage({ cart }) {
             <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
             <Header cart={cart} />
             <div className="home-page">
-                 <ProductsGrid products={products}/>
+                <ProductsGrid products={products} />
             </div>
         </>
     );
