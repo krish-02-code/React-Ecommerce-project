@@ -1,6 +1,7 @@
 import { formatmoney } from "../../utils/money";
 import dayjs from "dayjs";
-export function DeliveryOption({cartItems,deliveryOptions}) {
+import axios from "axios";
+export function DeliveryOption({ cartItems, deliveryOptions, loadCart }) {
     return (
         <div className="delivery-options">
             <div className="delivery-options-title">
@@ -12,9 +13,18 @@ export function DeliveryOption({cartItems,deliveryOptions}) {
                     priceString = `${formatmoney(deliveryOption.priceCents)} - Shipping `
                 }
 
+                const updateDeliveryOption = async () => {
+                    await axios.put(`/api/cart-items/${cartItems.productId}`, {
+                        deliveryOptionId: deliveryOption.id,
+                    });
+
+                    await loadCart();
+                }
+
                 return (
-                    <div key={deliveryOption.id} className="delivery-option">
+                    <div key={deliveryOption.id} className="delivery-option" onClick={updateDeliveryOption}>
                         <input type="radio" checked={deliveryOption.id === cartItems.deliveryOptionId}
+                        onChange={()=>{}}
                             className="delivery-option-input"
                             name={`delivery-option-${cartItems.productId}`} />
                         <div>
