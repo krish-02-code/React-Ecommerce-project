@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { ProductsGrid } from './ProductsGrid';
 
-export function HomePage({ cart }) {
+export function HomePage({ cart,loadCart }) {
     // fetch('http://localhost:3000/api/products')
     // .then((response)=>{
     //    return response.json();
@@ -29,7 +29,7 @@ export function HomePage({ cart }) {
             <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
             <Header cart={cart} />
             <div className="home-page">
-                <ProductsGrid products={products} />
+                <ProductsGrid products={products} loadCart={loadCart}/>
             </div>
         </>
     );
