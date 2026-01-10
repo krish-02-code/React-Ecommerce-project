@@ -10,7 +10,6 @@ import dayjs from 'dayjs';
 
 export function TrackingPage({ cart }) {
     const { orderId, productId } = useParams();
-
     const [order, setOrder] = useState(null);
 
     useEffect(() => {
@@ -23,26 +22,25 @@ export function TrackingPage({ cart }) {
     }, [orderId]);
 
     if (!order) return null;
-    console.log(order);
-    
-     const orderProduct = order.products.find((orderProduct) => {
+
+    const orderProduct = order.products.find((orderProduct) => {
         return orderProduct.productId === productId;
     });
-    
-    const totalDeliveryTimeMs =  orderProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
- 
-    const timePassedMs = dayjs().valueOf()-order.orderTimeMs;
 
-    let deliveryPercent = (timePassedMs/totalDeliveryTimeMs)*100;
+    const totalDeliveryTimeMs = orderProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
+
+    const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
+
+    let deliveryPercent = (timePassedMs / totalDeliveryTimeMs) * 100;
     console.log(deliveryPercent);
 
 
-    if(deliveryPercent > 100){
+    if (deliveryPercent > 100) {
         deliveryPercent = 100;
     }
 
-    const isPreparing = deliveryPercent<33;
-    const isShipping =  deliveryPercent>=33 && deliveryPercent<100;
+    const isPreparing = deliveryPercent < 33;
+    const isShipping = deliveryPercent >= 33 && deliveryPercent < 100;
     const isDeliverd = deliveryPercent === 100;
     return (
         <>
@@ -57,7 +55,7 @@ export function TrackingPage({ cart }) {
                     </a>
 
                     <div className="delivery-date">
-                        {deliveryPercent >= 100 ? 'Delivered on' : 'Arriving on'} {dayjs(orderProduct.estimatedDeliveryTimeMs).format('dddd,MMMM D')} 
+                        {deliveryPercent >= 100 ? 'Delivered on' : 'Arriving on'} {dayjs(orderProduct.estimatedDeliveryTimeMs).format('dddd,MMMM D')}
                     </div>
 
                     <div className="product-info">
@@ -83,7 +81,7 @@ export function TrackingPage({ cart }) {
                     </div>
 
                     <div className="progress-bar-container">
-                        <div className="progress-bar" style={{width:`${deliveryPercent}%`}}></div>
+                        <div className="progress-bar" style={{ width: `${deliveryPercent}%` }}></div>
                     </div>
                 </div>
             </div>
