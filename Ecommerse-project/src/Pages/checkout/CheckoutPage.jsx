@@ -10,7 +10,7 @@ export function CheckoutPage({ cart,loadCart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]);
     const [paymentSummary, setPaymentSumarry] = useState(null);
      
-
+    
     useEffect(()=>{
          const fetchCheckOutData = async ()=>{
          let response  = await axios.get('/api/payment-summary');
@@ -33,7 +33,7 @@ export function CheckoutPage({ cart,loadCart }) {
         <>
             <title>Checkout</title>
             <link rel="icon" type="image/svg+xml" href="cart-favicon.png" />
-            <CheckoutHeader />
+            <CheckoutHeader cart={cart}/>
 
             <div className="checkout-page">
                 <div className="page-title">Review your order</div>
