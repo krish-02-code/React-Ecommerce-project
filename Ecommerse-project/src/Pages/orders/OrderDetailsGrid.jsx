@@ -13,7 +13,7 @@ export function OrderDetailsGrid({ order,loadCart}) {
                         productId: orderProduct.product.id,
                         quantity : 1
                     });
-                    
+
                     await loadCart();
                 }
 
@@ -39,7 +39,7 @@ export function OrderDetailsGrid({ order,loadCart}) {
                                 <span className="buy-again-message" >Add to Cart</span>
                             </button>
                         </div>
-
+ 
                         <div className="product-actions">
                             <a href={`/tracking/${order.id}/${orderProduct.productId}`}>
                                 <button className="track-package-button button-secondary">
