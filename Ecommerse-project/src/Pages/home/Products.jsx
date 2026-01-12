@@ -30,7 +30,7 @@ export function Product({ product, loadCart }) {
         setQuantity(quantitySelected);
     }
     return (
-        <div key={product.id} className="product-container">
+        <div key={product.id} className="product-container" data-testid="product-container">
             <div className="product-image-container">
                 <img className="product-image"
                 data-testid = "product-image"
