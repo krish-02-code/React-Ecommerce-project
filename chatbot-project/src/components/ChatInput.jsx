@@ -41,7 +41,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
       }
     ]);
 
-    const response = await Chatbot.getResponseAsync(inputText);
+    const response = await Chatbot.getResponseAsync(inputText) ; 
 
     setChatMessages([
       ...newChatMessages,

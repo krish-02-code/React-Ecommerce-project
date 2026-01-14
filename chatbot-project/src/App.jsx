@@ -7,7 +7,7 @@ function App() {
   const [chatMessages, setChatMessages] = useState([]);
 
   useEffect(()=>{
-    localStorage.setItem('messages',JSON.stringify())
+    localStorage.setItem('messages',JSON.stringify(chatMessages))
   },[chatMessages])
 
 
