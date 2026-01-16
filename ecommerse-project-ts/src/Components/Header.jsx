@@ -1,11 +1,19 @@
 import './Header.css';
-import { Navigate, NavLink } from 'react-router';
+import { NavLink } from 'react-router';
 import LogoWhite from '../assets/images/logo-white.png';
 import MobileLogoWhite from '../assets/images/mobile-logo-white.png'
 import CartIcon from '../assets/images/icons/cart-icon.png';
 import SearchIcon from '../assets/images/icons/search-icon.png'
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
+
+// type HeaderProps = {
+//     cart:{
+//         productId:string,
+//         quantity:number,
+//         deliveryOptionsId:string;
+//     }[];
+// };  for ts 
 
 export function Header({ cart }) {
     const navigate = useNavigate();
