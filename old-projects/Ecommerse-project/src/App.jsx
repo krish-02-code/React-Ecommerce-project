@@ -4,7 +4,7 @@ import { CheckoutPage } from './Pages/checkout/CheckoutPage';
 import { Orders } from './Pages/orders/Orders';
 import { TrackingPage } from './Pages/tracking/TrackingPage';
 import { PageNotFound } from './Pages/pageNotFound/PageNotFound';
-import './App.css'
+
 import { useEffect, useState } from 'react';
 import axios from "axios";
 
